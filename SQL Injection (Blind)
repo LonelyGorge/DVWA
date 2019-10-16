@@ -1,0 +1,22 @@
+二、SQL Injection (Blind)	//基于 布尔(ascii 和 substr)  时间(if 和 sleep)
+1.判断是否存在注入，注入是字符型还是数字型
+2.猜解当前数据库名 库名长度length(database());二分法猜解数据库名。ascii(substr(databse(),1,1))>97
+3.猜解数据库中的表名
+					表的数量(select count (table_name) from information_schema.tables where table_schema=database())=1;
+					解表名长度length(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1))=1;
+					猜解表名ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))>97;
+4.猜解表中的字段名 字段数量，长度，值；
+5.猜解数据
+	Low:
+		1.mysqli_num_rows() 函数返回结果集中行的数量。
+		2.$_SERVER 是一个包含了诸如头信息(header)、路径(path)、以及脚本位置(script locations)等等信息的数组。这个数组中的项目由 Web 服务器创建。不能保证每个服务器都提供全部项目；//https://www.cnblogs.com/jianmingyuan/p/5900064.html
+		3.substr(string,start,length)	返回字符串的一部分。
+		4.sleep()  沉睡
+		4.if(,,)	if语句
+		5.header() PHP返回状态码，由服务器处理
+	Medium:
+		1.trigger_error(errormsg,errortype); 创建用户自定义的错误消息。当您需要在运行脚本时的某个指定条件下自定义错误消息时，该函数很有用。
+	High:
+		1.setcookie() 函数用于设置 cookie。PHP 的 $_COOKIE 变量用于取回 cookie 的值。使用 isset() 函数来确认是否已设置了 cookie。当删除 cookie 时，您应当使过期日期变更为过去的时间点。
+		2.bindParam — 绑定一个参数到指定的变量名。bind_param("sss", firstname,lastname, $email);
+		
