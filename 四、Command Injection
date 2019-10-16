@@ -1,0 +1,26 @@
+四、Command Injection
+命令执行漏洞的原理： ：在操作系统中， & 、&& 、| 、 || 都可以作为命令连接符使用，用户通过浏览器提交执行命令，由于服务器端没有对执行函数进行过滤，从而造成可以执行危险命令
+
+PHP的命令执行函数主要有： ：system、exec、passthru、shell_exec与’ '(这个并不是函数，只是代表他可以执行命令)
+
+常用url编码 ：
+%20 = 空格
+%5c = \
+%26 = &
+%7c = |
+
+command1 & command2 ：先执行command2后执行command1
+command1 && command2 ：先执行command1后执行command2
+command1 | command2 ：只执行command2
+command1||command2：command1执行失败，再执行command2(若command1执行成功，就不再执行command2)
+	Low:
+		1.string php_uname ([ string $mode = “a” ] ); 返回运行 PHP 的系统的有关信息;
+		2.shell_exec（字符串）;通过外壳执行命令并以字符串形式返回完整的输出;
+		3.stristr(string,search,before_search) ：搜索字符串在另一字符串中的第一次出现，返回字符串的剩余部分（从匹配点），如果未找到所搜索的字符串，则返回 FALSE;
+	Medium:
+		1.array_keys(array,value,strict);返回包含数组中所有键名的一个新数组。
+		2.str_replace(find,replace,string,[count]);函数替换字符串中的一些字符（区分大小写）;
+	High:
+		1.与黑名单的过滤顺序有关。比如，'|  ' 和 '||';
+	Impossible：
+		1.explode(separator,string,limit) ：把字符串打散为数组;
