@@ -1,0 +1,3 @@
+六、Insecure CAPTCHA
+		1.recaptcha_check_answer($privkey,$remoteip, $challenge,$response);服务器通过调用recaptcha_check_answer函数检查用户输入的正确性。
+		2.$POST中的是某个字段。通过修改，来绕过验证码。
