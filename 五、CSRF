@@ -1,0 +1,7 @@
+Low:
+		1.无任何验证，只需点击网址即可更改用户密码。
+	Medium:
+		1.stripos(string,find,start);查找字符串在另一字符串中第一次出现的位置,不区分大小写;
+		2.只验证主机名host时，可以将网页地址更改。
+	High:
+		1.session token的使用。
