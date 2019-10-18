@@ -1,0 +1,4 @@
+九、Weak Session IDs
+		1.setcookie(name,value,有效时长,服务器路径,cookie的域名,是否使用https)；向客户端发送一个 HTTP cookie;
+		2.sha1();计算字符串的 SHA-1 散列;
+		3.mt_rand(min,max);使用 Mersenne Twister 算法生成随机整数;
