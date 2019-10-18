@@ -1,0 +1,34 @@
+八、File Upload
+		1.  ".=" 连接两个字符串;
+		2.basename(path,suffix);返回路径中的文件名部分。$path = "/testweb/home.php";echo basename($path);	=>"home";
+		3.move_uploaded_file(file,newloc);将上传的文件移动到新位置。若成功，则返回 true，否则返回 false。
+		4.$FILES  通过 HTTP POST 方式上传到当前脚本的项目的数组;$HTTP_POST_FILES 包含相同的信息，但它不是一个超全局变量。
+			$_FILES["file"]["name"] - 上传文件的名称;
+			$_FILES["file"]["type"] - 上传文件的类型;
+			$_FILES["file"]["size"] - 上传文件的大小，以字节计;
+			$_FILES["file"]["tmp_name"] - 存储在服务器的文件的临时副本的名称;
+		5.限制文件类型时，可以通过抓包，修改Content-type为对应的类型;
+		6.strpos类型:
+			strrpos() 查找字符串在另一字符串中最后一次出现的位置（区分大小写）;
+			strpos() - 查找字符串在另一字符串中第一次出现的位置（区分大小写）;
+			stripos() - 查找字符串在另一字符串中第一次出现的位置（不区分大小写）;
+			strripos() - 查找字符串在另一字符串中最后一次出现的位置（不区分大小写）;
+		7.array getimagesize ( string $filename [, array &$imageinfo ] );用于获取图像大小及相关信息，成功返回一个数组，失败则返回 FALSE;
+		8.在php版本小于5.3.4的服务器中，当Magic_quote_gpc选项为off时，可以在文件名中使用%00截断，所以可以把上传文件命名为xiaoma.php%00.png。
+		9.文件合并:copy 1.jpg/b+text.txt/a hack.jpg
+		10.uniqid(prefix,more_entropy);基于以微秒计的当前时间，生成一个唯一的 ID。由于基于系统时间，通过该函数生成的 ID 不是最佳的。如需生成绝对唯一的 ID，请使用 md5() 函数;
+		11.ini_get ( string $varname );成功时返回配置选项的值。
+			register_globals = Off
+			post_max_size = 8M
+			echo 'register_globals = ' . ini_get('register_globals') . "\n";
+			echo 'post_max_size = ' . ini_get('post_max_size') . "\n";
+		=>	register_globals = 0
+			post_max_size = 8M
+		12.sys_get_temp_dir ( void );返回 PHP 储存临时文件的默认目录的路径;
+		13.imagecreatefrom( filename );系列函数用于从文件或 URL 载入一幅图像。进行二次渲染，洗掉图片中的恶意代码。失败返回false;
+		14.imagejpeg ( image , filename , quality);从image图像以filename为文件名创建一个JPEG图像，可选参数quality，范围从 0（最差质量，文件更小）到 100（最佳质量，文件最大）;
+		15.imagedestroy( img );函数销毁图像资源;
+		16.getcwd();返回当前工作目录;
+		17.rename(oldname,newname,context);重命名文件或目录。成功返回true，失败false;
+		18.file_exists(path);检查文件或目录是否存在。成功ture，false;
+		19.unlink(filename,context);删除文件;成功ture，false;
