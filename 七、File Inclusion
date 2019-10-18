@@ -1,0 +1,9 @@
+七、File Inclusion
+服务器包含文件时，不管文件后缀是否是php，都会尝试当做php文件执行，如果文件内容确为php，则会正常执行并返回结果，如果不是，则会原封不动地打印文件内容，所以文件包含漏洞常常会导致任意文件读取与任意命令执行。
+		1.本地包含，远程包含；
+		2.使用 str_replace 函数进行过滤是很不安全的，因为可以使用双写绕过。例如，我们包含 hthttp://tp://xx 时，str_replace 函数只会过滤一个 http://； 
+		3.可以包含: ../	 ./  /  或者 绝对路径 如:?page=D:/phpstudy_pro/WWW/text.txt;
+		4.fnmatch(pattern,string,flags);根据指定的模式来匹配文件名或字符串。ps:该函数无法在 Windows 平台上使用。
+		5.用file:///+文件的地址，其实就等价于文件的地址;即file:///D:/phpstudy_pro/WWW/text.txt 等价于 
+				D:/phpstudy_pro/WWW/text.txt
+		6.Impossible级别的代码使用了白名单机制进行防护，简单粗暴，page参数必须为“include.php”、“file1.php”、“file2.php”、“file3.php”之一，彻底杜绝了文件包含漏洞。
